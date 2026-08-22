@@ -1,0 +1,17 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = Counter(nums)
+
+        freq_buckets = [ [] for _ in range(len(nums) + 1)]
+        print(freq_buckets)
+        for num, freq in count.items():
+            freq_buckets[freq].append(num)
+        print(freq_buckets)
+
+        result = []
+        for i in range(len(freq_buckets) - 1, 0, -1):
+            if freq_buckets[i]:
+                for num in freq_buckets[i]:
+                    result.append(num)
+                    if len(result) == k:
+                        return result
